@@ -1,13 +1,12 @@
 // Event listener for all button elements
 $("button").on("click", function () {
-    // In this case, the "this" keyword refers to the button that was clicked
+    // clicked button
     var person = $(this).attr("data-person");
 
-    // Constructing a URL to search Giphy for the name of the person who said the quote
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        person + "&api_key=dc6zaTOxFJmzC&limit=10";
+    // Constructing a URL to search Giphy 
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + person + "&api_key=dc6zaTOxFJmzC&limit=10";
 
-    // Performing our AJAX GET request
+    // Performing our AJAX call
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -20,7 +19,7 @@ $("button").on("click", function () {
             // Looping over every result item
             for (var i = 0; i < results.length; i++) {
 
-                // Only taking action if the photo has an appropriate rating
+                // Only taking action if the photo has an appropriate rating - had to set limit -some contact was just wrong
                 if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
                     // Creating a div for the gif
                     var gifDiv = $("<div>");
